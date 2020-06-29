@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: azure;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100vh;
+
+}
+
+.battle-ground {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.player-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.total {
+    align-self: flex-start;
+}
