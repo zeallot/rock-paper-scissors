@@ -1,21 +1,26 @@
 const express = require('express');
 const path = require('path');
-const db = require('./modules/firebase');
+// const db = require('./modules/firebase');
 
 
-db.game().on('value', function(snapshot) {
-    console.log(snapshot.val());
-});
+// db.game().on('value', function(snapshot) {
+//     console.log(snapshot.val());
+// });
 
-db.setGameResults(1, 4, 5);
+// db.setGameResults(1, 4, 5);
 
 const app = express();
 
 app.use('/css', express.static('../client/css'));
 app.use('/js', express.static('../client/js'));
 
-app.get('/game', (req, res) => {
-   res.json({name: 'vova'})
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.post('/game', (req, res) => {
+    const [p1, p2] = req.body;
+    console.log(p1, p2);
+    res.json({name: 'vova'})
 });
 
 app.get('/', (req, res) => {

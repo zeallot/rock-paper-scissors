@@ -10,10 +10,20 @@ let db = admin.database();
 
 module.exports.game = () => db.ref('/game');
 
-module.exports.setGameResults = (gameCount, player_1_victory, player_2_victory) => {
+module.exports.setGameResults = (
+        gameCount,
+        playerOneTodayVictoryCount,
+        playerTwoTodayVictoryCount,
+        playerOneAllVictoryCount,
+        playerTwoAllVictoryCount,
+        draw,
+    ) => {
     db.ref('game/').set({
         gameCount,
-        player_1_victory,
-        player_2_victory,
+        playerOneTodayVictoryCount,
+        playerTwoTodayVictoryCount,
+        playerOneAllVictoryCount,
+        playerTwoAllVictoryCount,
+        draw,
     }).catch(error => console.log(error));
 }
