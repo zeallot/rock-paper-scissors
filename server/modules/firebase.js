@@ -1,9 +1,9 @@
-const admin = require("firebase-admin");
-let serviceAccount = require("../serviceAccount.json");
+const admin = require('firebase-admin');
+let serviceAccount = require('../serviceAccount.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://rock-paper-scissors-db7ef.firebaseio.com",
+    databaseURL: 'https://rock-paper-scissors-db7ef.firebaseio.com',
 });
 
 let db = admin.database();
@@ -11,13 +11,13 @@ let db = admin.database();
 module.exports.game = () => db.ref('/game');
 
 module.exports.setGameResults = (
-        gameCount,
-        playerOneTodayVictoryCount,
-        playerTwoTodayVictoryCount,
-        playerOneAllVictoryCount,
-        playerTwoAllVictoryCount,
-        draw,
-    ) => {
+    gameCount,
+    playerOneTodayVictoryCount,
+    playerTwoTodayVictoryCount,
+    playerOneAllVictoryCount,
+    playerTwoAllVictoryCount,
+    draw,
+) => {
     db.ref('game/').set({
         gameCount,
         playerOneTodayVictoryCount,
@@ -26,4 +26,4 @@ module.exports.setGameResults = (
         playerTwoAllVictoryCount,
         draw,
     }).catch(error => console.log(error));
-}
+};

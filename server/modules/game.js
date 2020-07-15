@@ -1,16 +1,9 @@
-
-
-function getWinner(p1, p2) {
+module.exports.getWinner = (p1, p2) => {
     if ((p1 + 1) % 3 == p2) {
-        return console.log("Player 2 won")
+        return 2;
     } else if (p1 == p2) {
-        return console.log("It is a draw")
+        return 0;
     } else {
-        return console.log("Player 1 won")
+        return 1;
     }
-}
-const p1 = randomSign();
-const p2 = randomSign();
-
-console.log(p1, p2)
-getWinner(p1, p2);
+};

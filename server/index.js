@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
+
 // const db = require('./modules/firebase');
-
-
 // db.game().on('value', function(snapshot) {
 //     console.log(snapshot.val());
 // });
@@ -20,11 +19,11 @@ app.use(express.json());
 app.post('/game', (req, res) => {
     const [p1, p2] = req.body;
     console.log(p1, p2);
-    res.json({name: 'vova'})
+    res.json({name: 'vova'});
 });
 
 app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, '../client/index.html'))
-})
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+});
 
 app.listen(3000);
