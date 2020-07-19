@@ -25,6 +25,5 @@ setInterval(() => {
     const p2Sign = randomSign();
     const winner = getWinner(p1Sign, p2Sign);
     firebase.setGameResults(winner, p1Sign, p2Sign);
-    console.log(p1Sign, p2Sign, winner);
 }, 3000);
 

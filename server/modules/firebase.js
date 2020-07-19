@@ -22,7 +22,7 @@ module.exports.setGameResults = (winner, p1Sign, p2Sign) => {
                 draw: ++gameInfo.draw,
                 lastGameResult: {
                     p1Sign,
-                    p2Sign
+                    p2Sign,
                 }
             };
             ref.set(gameInfoResult).catch(error => console.log(error));
