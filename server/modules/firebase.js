@@ -6,24 +6,30 @@ admin.initializeApp({
     databaseURL: 'https://rock-paper-scissors-db7ef.firebaseio.com',
 });
 
-let db = admin.database();
+const db = admin.database();
+const ref = db.ref('/');
 
-module.exports.game = () => db.ref('/game');
+module.exports.ref = db.ref('/');
 
-module.exports.setGameResults = (
-    gameCount,
-    playerOneTodayVictoryCount,
-    playerTwoTodayVictoryCount,
-    playerOneAllVictoryCount,
-    playerTwoAllVictoryCount,
-    draw,
-) => {
-    db.ref('game/').set({
-        gameCount,
-        playerOneTodayVictoryCount,
-        playerTwoTodayVictoryCount,
-        playerOneAllVictoryCount,
-        playerTwoAllVictoryCount,
-        draw,
-    }).catch(error => console.log(error));
+module.exports.setGameResults = (winner) => {
+    ref.once('value', function(snap) {
+        let gameInfo = snap.val();
+        let gameInfoResult;
+        if (winner === 0) {
+            gameInfoResult = {...gameInfo, count: ++gameInfo.count, draw: ++gameInfo.draw};
+            ref.set(gameInfoResult).catch(error => console.log(error));
+            return;
+        } else {
+            gameInfoResult = {...gameInfo, count: ++gameInfo.count, ['wins_player_' + winner]: ++gameInfo['wins_player_' + winner]};
+            ref.set(gameInfoResult).catch(error => console.log(error));
+            return;
+        }
+    });
 };
+
+// module.exports.getGameInfo = () => {
+//     ref.on('value', function(snap) {  
+//         gameInfo = snap.val();
+//     });
+// };
+

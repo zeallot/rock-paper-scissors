@@ -1,12 +1,7 @@
 const express = require('express');
 const path = require('path');
-
-// const db = require('./modules/firebase');
-// db.game().on('value', function(snapshot) {
-//     console.log(snapshot.val());
-// });
-
-// db.setGameResults(1, 4, 5);
+const game = require('./modules/game');
+const firebase = require('./modules/firebase');
 
 const app = express();
 
@@ -16,10 +11,19 @@ app.use('/js', express.static('../client/js'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.post('/game', (req, res) => {
-    const [p1, p2] = req.body;
-    console.log(p1, p2);
-    res.json({name: 'vova'});
+app.get('/game', (req, res) => {
+    const p1Sign = game.randomSign();
+    const p2Sign = game.randomSign();
+    const winner = game.getWinner(p1Sign, p2Sign);
+    firebase.setGameResults(winner);
+    firebase.ref.once('value', function(snap) {
+        return res.json({
+            p1Sign,
+            p2Sign,
+            winner,
+            gameInfo: snap.val()
+        });
+    });
 });
 
 app.get('/', (req, res) => {

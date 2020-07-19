@@ -1,21 +1,8 @@
 const BASE_URL = 'http://localhost:3000';
 
-function randomSign() {
-    const signs = {
-        rock: 0,
-        paper: 1,
-        scissors: 2,
-    }
-    const keys = Object.keys(signs);
-    return signs[keys[ keys.length * Math.random() << 0]];
-}
-
-const fetchGameInfo = async (p1, p2) => {
+const fetchGameInfo = async () => {
     try {
-        const res = await axios.post(`${BASE_URL}/game`, {
-            p1,
-            p2,
-        });
+        const res = await axios.get(`${BASE_URL}/game`);
         const game = res.data;
         return game;
     } catch (e) {
@@ -23,4 +10,3 @@ const fetchGameInfo = async (p1, p2) => {
     }
 };
 
-fetchGameInfo(randomSign(), randomSign()).then(console.log(res));
