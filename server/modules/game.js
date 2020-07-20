@@ -21,9 +21,9 @@ const randomSign = () => {
 };
 
 setInterval(() => {
-    const p1Sign = randomSign();
-    const p2Sign = randomSign();
-    const winner = getWinner(p1Sign, p2Sign);
-    firebase.setGameResults(winner, p1Sign, p2Sign);
+    const bot1Sign = randomSign();
+    const bot2Sign = randomSign();
+    const winner = getWinner(bot1Sign, bot2Sign);
+    firebase.setGameResults(winner, bot1Sign, bot2Sign);
 }, 3000);
 

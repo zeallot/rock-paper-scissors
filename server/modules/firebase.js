@@ -11,7 +11,7 @@ const ref = db.ref('/');
 
 module.exports.ref = db.ref('/');
 
-module.exports.setGameResults = (winner, p1Sign, p2Sign) => {
+module.exports.setGameResults = (winner, bot1Sign, bot2Sign) => {
     ref.once('value', function(snap) {
         let gameInfo = snap.val();
         let gameInfoResult;
@@ -21,24 +21,22 @@ module.exports.setGameResults = (winner, p1Sign, p2Sign) => {
                 count: ++gameInfo.count,
                 draw: ++gameInfo.draw,
                 lastGameResult: {
-                    p1Sign,
-                    p2Sign,
+                    bot1Sign,
+                    bot2Sign,
                 }
             };
             ref.set(gameInfoResult).catch(error => console.log(error));
-            return;
         } else {
             gameInfoResult = {
                 ...gameInfo,
                 count: ++gameInfo.count,
-                ['wins_player_' + winner]: ++gameInfo['wins_player_' + winner],
+                ['wins_bot_' + winner]: ++gameInfo['wins_bot_' + winner],
                 lastGameResult: {
-                    p1Sign,
-                    p2Sign
+                    bot1Sign,
+                    bot2Sign
                 }
             };
             ref.set(gameInfoResult).catch(error => console.log(error));
-            return;
         }
     });
 };

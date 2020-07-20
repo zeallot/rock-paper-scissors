@@ -1,23 +1,22 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function() {
     const BASE_URL = 'http://localhost:3000';
 
-    let pl1SingEl = document.querySelector("#pl1Sign");
-    let pl2SingEl = document.querySelector('#pl2Sign');
-    let gameCountEl = document.querySelector('#gameCount');
-    let pl1WinsEl = document.querySelector('#pl1Wins');
-    let pl2WinsEl = document.querySelector('#pl2Wins');    
-    
-    
+    const bot1TotalWins = document.querySelector('#bot-1-total-wins');
+    const bot2TotalWins = document.querySelector('#bot-2-total-wins');
+
     const fetchGameInfo = async () => {
         try {
             const res = await axios.get(`${BASE_URL}/game`);
             const game = res.data;
-            const {gameInfo: { lastGameResult: {p1Sign, p2Sign}}} = game;
+            const { gameInfo: { lastGameResult: { bot1Sign, bot2Sign }}} = game;
+            const { gameInfo: { wins_bot_1, wins_bot_2 }} = game;
+            bot1TotalWins.innerHTML = wins_bot_1;
+            bot2TotalWins.innerHTML = wins_bot_2;
         } catch (e) {
             console.error(e);
         }
     };
-    
+
     setInterval(() => {
         fetchGameInfo();
     }, 3000)

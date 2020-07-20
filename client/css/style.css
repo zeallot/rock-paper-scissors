@@ -9,32 +9,26 @@ body {
     background: azure;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 500px;
+.battle-ground {
+    max-width: 600px;
+    width: 100%;
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 100vh;
-
+    display: flex;
+    justify-content: center;
 }
 
-.battle-ground {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.bot {
     width: 100%;
 }
 
-.player-block {
+.bot__counts {
     display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.total {
-    align-self: flex-start;
+.bot__count {
+    margin-right: 10px;
+}
+
+.bot__counts .bot__count:last-of-type {
+    margin-right: 0;
 }
