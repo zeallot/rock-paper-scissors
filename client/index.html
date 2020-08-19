@@ -13,22 +13,52 @@
 <body>
     <main class="container">
         <div class="battle-ground">
-            <div class="player-block player-block__left">
-                <span class="player-wins">Wins today: 10</span>
-                <img src="https://via.placeholder.com/150" alt="">
-                <p class="player-name">Player 1</p>
+            <div class="bot bot--1">
+                <div class="bot__img">
+                    <img src="" alt="bot-1">
+                </div>
+                <div class="bot__info">
+                    <h2 class="bot__title">Bot 1</h2>
+                    <div class="bot__counts">
+                        <div class="bot__count">
+                            <p>Wins today</p>
+                            <span id="bot-1-today-wins">***</span>
+                        </div>
+                        <div class="bot__count">
+                            <p>Total wins</p>
+                            <span id="bot-1-total-wins">***</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="player-block player-block__right">
-                <span class="player-wins">Wins today: 30</span>
-                <img src="https://via.placeholder.com/150" alt="">
-                <p class="player-name">Player 2</p>
+            <div class="bot bot--2">
+                <div class="bot__img">
+                    <img src="" alt="bot-2">
+                </div>
+                <div class="bot__info">
+                    <h2 class="bot__title">Bot 2</h2>
+                    <div class="bot__counts">
+                        <div class="bot__count">
+                            <p>Wins today</p>
+                            <span id="bot-2-today-wins">***</span>
+                        </div>
+                        <div class="bot__count">
+                            <p>Total wins</p>
+                            <span id="bot-2-total-wins">***</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="total">
-            <p>Game count: <span>100</span></p>
-            <p>All wins of the Player 1: <span>4000</span></p>
-            <p>All wins of the Player 2: <span>5000</span></p>
+        <div class="total-counter">
+            <p>total draws <span id="total-draws">***</span></p>
+            <p>draws today <span id="today-draws">***</span></p>
+            <p>total games <span id="total-games">***</span></p>
         </div>
     </main>
+
+    <div id="loader" class="loader show">
+        <p>Загрузка...</p>
+    </div>
 </body>
 </html>

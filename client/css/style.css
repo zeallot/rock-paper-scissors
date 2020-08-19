@@ -7,34 +7,46 @@ body {
     height: 100%;
     margin: 0;
     background: azure;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 500px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 100vh;
-
+    position: relative;
 }
 
 .battle-ground {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.bot {
     width: 100%;
 }
 
-.player-block {
+.bot__counts {
     display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.total {
-    align-self: flex-start;
+.bot__count {
+    margin-right: 10px;
+}
+
+.bot__counts .bot__count:last-of-type {
+    margin-right: 0;
+}
+
+.total-counter {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.show {
+    display: block !important;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    display: none;
 }

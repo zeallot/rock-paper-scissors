@@ -1,19 +1,44 @@
-const admin = require("firebase-admin");
-let serviceAccount = require("../serviceAccount.json");
+const admin = require('firebase-admin');
+let serviceAccount = require('../serviceAccount.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://rock-paper-scissors-db7ef.firebaseio.com",
+    databaseURL: 'https://rock-paper-scissors-db7ef.firebaseio.com',
 });
 
-let db = admin.database();
+const db = admin.database();
+const ref = db.ref('/');
 
-module.exports.game = () => db.ref('/game');
+module.exports.ref = db.ref('/');
 
-module.exports.setGameResults = (gameCount, player_1_victory, player_2_victory) => {
-    db.ref('game/').set({
-        gameCount,
-        player_1_victory,
-        player_2_victory,
-    }).catch(error => console.log(error));
-}
+module.exports.setGameResults = (winner, bot1Sign, bot2Sign) => {
+    ref.once('value', function(snap) {
+        let gameInfo = snap.val();
+        let gameInfoResult;
+        if (winner === 0) {
+            gameInfoResult = {
+                ...gameInfo,
+                count: ++gameInfo.count,
+                draw: ++gameInfo.draw,
+                lastGameResult: {
+                    bot1Sign,
+                    bot2Sign,
+                }
+            };
+            ref.set(gameInfoResult).catch(error => console.log(error));
+        } else {
+            gameInfoResult = {
+                ...gameInfo,
+                count: ++gameInfo.count,
+                ['wins_bot_' + winner]: ++gameInfo['wins_bot_' + winner],
+                lastGameResult: {
+                    bot1Sign,
+                    bot2Sign
+                }
+            };
+            ref.set(gameInfoResult).catch(error => console.log(error));
+        }
+    });
+};
+
+
