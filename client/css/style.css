@@ -7,6 +7,7 @@ body {
     height: 100%;
     margin: 0;
     background: azure;
+    position: relative;
 }
 
 .battle-ground {
@@ -15,6 +16,7 @@ body {
     margin: 0 auto;
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .bot {
@@ -31,4 +33,20 @@ body {
 
 .bot__counts .bot__count:last-of-type {
     margin-right: 0;
+}
+
+.total-counter {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.show {
+    display: block !important;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    display: none;
 }
